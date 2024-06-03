@@ -117,3 +117,52 @@ document.addEventListener('DOMContentLoaded', function() {
         window.location.href = 'riwayat.html'; // Redirect ke halaman riwayat setelah pendaftaran
     });
 });
+
+    //jadwal
+    document.addEventListener('DOMContentLoaded', () => {
+        loadSchedules();
+    });
+    
+    function loadSchedules() {
+        const schedules = JSON.parse(localStorage.getItem('schedules')) || [];
+        const scheduleBody = document.getElementById('scheduleBody');
+        scheduleBody.innerHTML = '';
+    
+        schedules.forEach((schedule, index) => {
+            const row = scheduleBody.insertRow();
+            row.innerHTML = `
+                <td>${schedule.doctorName}</td>
+                <td>${schedule.specialization}</td>
+                <td>${schedule.day}</td>
+                <td>${schedule.time}</td>
+            `;
+        });
+    }
+
+
+    //rm
+    // Function to load records from localStorage and display them in the table
+function loadRecords() {
+    const records = JSON.parse(localStorage.getItem('records')) || [];
+    const recordBody = document.getElementById('recordBody');
+    recordBody.innerHTML = '';
+
+    records.forEach((record) => {
+        const row = recordBody.insertRow();
+        row.innerHTML = `
+            <td>${record.recordNumber}</td>
+            <td>${record.patientName}</td>
+            <td>${record.age}</td>
+            <td>${record.diagnosis}</td>
+            <td>${record.doctor}</td>
+            <td>${record.date}</td>
+        `;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    loadRecords();
+});
+
+    
+    

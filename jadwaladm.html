@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS AMC Muhammadiyah - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="img/logo.png" alt="RS logo" class="header-logo">
+            <h1>RS AMC MUHAMMADIYAH</h1>
+            <p>"Unggul Dan Islami"</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li class="dropdown"></li>
+                    <li><a href="jadwaladm.html">Jadwal Dokter</a></li>
+                    <li><a href="riwayatadm.html">Riwayat Pendaftaran</a></li>
+                    <li><a href="rekammedisadm.html">Cek Rekam Medis</a></li>
+                    <li><a id="logout" href="login.html" >Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="table-container">
+                <h1>Jadwal Dokter</h1>
+                <button class="add-schedule-button" onclick="showForm()">Tambah Jadwal</button>
+                <table id="scheduleTable">
+                    <thead>
+                        <tr>
+                            <th>Nama Dokter</th>
+                            <th>Spesialisasi</th>
+                            <th>Hari</th>
+                            <th>Jam</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="scheduleBody">
+                    </tbody>
+                </table>
+            </div>
+            <div id="scheduleForm" class="form-container" style="display:none;">
+                <h2 id="formTitle">Tambah Jadwal</h2>
+                <form onsubmit="saveSchedule(event)">
+                    <label for="doctorName">Nama Dokter:</label>
+                    <input type="text" id="doctorName" name="doctorName" required>
+                    <label for="specialization">Spesialisasi:</label>
+                    <input type="text" id="specialization" name="specialization" required>
+                    <label for="day">Hari:</label>
+                    <input type="text" id="day" name="day" required>
+                    <label for="time">Jam:</label>
+                    <input type="text" id="time" name="time" required>
+                    <input type="hidden" id="editIndex">
+                    <button type="submit">Simpan</button>
+                    <button type="button" onclick="hideForm()">Batal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 - IT RS AMC Muhammadiyah</p>
+    </footer>
+    <script src="scriptadm.js"></script>
+</body>
+</html>

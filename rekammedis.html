@@ -33,9 +33,10 @@
                 </ul>
             </nav>
         </div>
+        <div class="content">
             <div class="table-container">
                 <h1>Data Rekam Medis</h1>
-                <table>
+                <table id="recordTable">
                     <thead>
                         <tr>
                             <th>No RM</th>
@@ -46,39 +47,17 @@
                             <th>Tanggal</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Ahmad Subekti</td>
-                            <td>45</td>
-                            <td>Diabetes</td>
-                            <td>Dr. Andi Setiawan</td>
-                            <td>12/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Siti Rahmawati</td>
-                            <td>30</td>
-                            <td>Hipertensi</td>
-                            <td>Dr. Budi Santoso</td>
-                            <td>15/01/2024</td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>Joko Santoso</td>
-                            <td>50</td>
-                            <td>Asma</td>
-                            <td>Dr. Clara Wijaya</td>
-                            <td>20/01/2024</td>
-                        </tr>
+                    <tbody id="recordBody">
+                        <!-- Data akan dimuat melalui JavaScript -->
                     </tbody>
                 </table>
             </div>
         </div>
+    </div>
     <footer>
         <p>© 2024 - IT RS AMC Muhammadiyah</p>
     </footer>
-
     <script src="script.js"></script>
 </body>
 </html>
+

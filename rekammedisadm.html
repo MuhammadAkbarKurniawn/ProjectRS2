@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS AMC Muhammadiyah - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="img/logo.png" alt="RS logo" class="header-logo">
+            <h1>RS AMC MUHAMMADIYAH</h1>
+            <p>"Unggul Dan Islami"</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="jadwaladm.html">Jadwal Dokter</a></li>
+                    <li><a href="riwayatadm.html">Riwayat Pendaftaran</a></li>
+                    <li><a href="rekammedisadm.html">Cek Rekam Medis</a></li>
+                    <li><a id="logout" href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="table-container">
+                <h1>Data Rekam Medis</h1>
+                <button onclick="showForm()">Tambah Rekam Medis</button>
+                <table id="recordTable">
+                    <thead>
+                        <tr>
+                            <th>No RM</th>
+                            <th>Nama Pasien</th>
+                            <th>Umur</th>
+                            <th>Diagnosa</th>
+                            <th>Dokter</th>
+                            <th>Tanggal</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recordBody">
+                        <!-- Data akan dimuat melalui JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="recordForm" style="display:none;">
+                <h2 id="formTitle">Tambah Rekam Medis</h2>
+                <form onsubmit="saveRecord(event)">
+                    <label for="recordNumber">No RM:</label>
+                    <input type="text" id="recordNumber" name="recordNumber" required>
+                    <label for="patientName">Nama Pasien:</label>
+                    <input type="text" id="patientName" name="patientName" required>
+                    <label for="age">Umur:</label>
+                    <input type="number" id="age" name="age" required>
+                    <label for="diagnosis">Diagnosa:</label>
+                    <input type="text" id="diagnosis" name="diagnosis" required>
+                    <label for="doctor">Dokter:</label>
+                    <input type="text" id="doctor" name="doctor" required>
+                    <label for="date">Tanggal:</label>
+                    <input type="date" id="date" name="date" required>
+                    <input type="hidden" id="editIndex">
+                    <button type="submit">Simpan</button>
+                    <button type="button" onclick="hideForm()">Batal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 - IT RS AMC Muhammadiyah</p>
+    </footer>
+    <script src="scriptadm.js"></script>
+</body>
+</html>
