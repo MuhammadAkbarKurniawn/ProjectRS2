@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS AMC Muhammadiyah - Admin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img src="img/logo.png" alt="RS logo" class="header-logo">
+            <h1>RS AMC MUHAMMADIYAH</h1>
+            <p>"Unggul Dan Islami"</p>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li class="dropdown"></li>
+                    <li><a href="jadwaladm.html">Jadwal Dokter</a></li>
+                    <li><a href="riwayatadm.html">Riwayat Pendaftaran</a></li>
+                    <li><a href="rekammedisadm.html">Cek Rekam Medis</a></li>
+                    <li><a id="logout" href="login.html">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <div class="table-container">
+                <h1>Riwayat Pendaftaran</h1>
+                <button onclick="showRegistrationForm()">Tambah Pendaftaran</button>
+                <table id="riwayat-table">
+                    <thead>
+                        <tr>
+                            <th>No RM</th>
+                            <th>Nama Lengkap</th>
+                            <th>Tanggal Lahir</th>
+                            <th>Alamat</th>
+                            <th>Nomor Telepon</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Data pendaftaran akan ditambahkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+            <div id="registrationForm" style="display:none;">
+                <h2 id="formTitle">Tambah Pendaftaran</h2>
+                <form onsubmit="saveRegistration(event)">
+                    <label for="noRm">No RM:</label>
+                    <input type="text" id="noRm" name="noRm" required>
+                    <label for="name">Nama Lengkap:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="dob">Tanggal Lahir:</label>
+                    <input type="date" id="dob" name="dob" required>
+                    <label for="address">Alamat:</label>
+                    <input type="text" id="address" name="address" required>
+                    <label for="phone">Nomor Telepon:</label>
+                    <input type="text" id="phone" name="phone" required>
+                    <input type="hidden" id="editIndex">
+                    <button type="submit">Simpan</button>
+                    <button type="button" onclick="hideRegistrationForm()">Batal</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 - IT RS AMC Muhammadiyah</p>
+    </footer>
+    <script src="scriptadm.js"></script>
+</body>
+</html>

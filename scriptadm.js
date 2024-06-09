@@ -1,9 +1,8 @@
-//jadwal
 document.addEventListener('DOMContentLoaded', () => {
     loadSchedules();
 });
 
-function showForm() {
+function showScheduleForm() {
     document.getElementById('scheduleForm').style.display = 'block';
     document.getElementById('formTitle').innerText = 'Tambah Jadwal';
     document.getElementById('doctorName').value = '';
@@ -13,7 +12,7 @@ function showForm() {
     document.getElementById('editIndex').value = '';
 }
 
-function hideForm() {
+function hideScheduleForm() {
     document.getElementById('scheduleForm').style.display = 'none';
 }
 
@@ -36,7 +35,7 @@ function saveSchedule(event) {
 
     localStorage.setItem('schedules', JSON.stringify(schedules));
     loadSchedules();
-    hideForm();
+    hideScheduleForm();
 }
 
 function editSchedule(button) {
@@ -50,7 +49,7 @@ function editSchedule(button) {
     document.getElementById('day').value = schedules[index].day;
     document.getElementById('time').value = schedules[index].time;
     document.getElementById('formTitle').innerText = 'Edit Jadwal';
-    showForm();
+    showScheduleForm();
 }
 
 function deleteSchedule(button) {
@@ -83,9 +82,8 @@ function loadSchedules() {
     });
 }
 
-//rm
-// Function to show the form for adding/editing a record
-function showForm() {
+// Rekam Medis
+function showRecordForm() {
     document.getElementById('recordForm').style.display = 'block';
     document.getElementById('formTitle').innerText = 'Tambah Rekam Medis';
     document.getElementById('recordNumber').value = '';
@@ -97,11 +95,10 @@ function showForm() {
     document.getElementById('editIndex').value = '';
 }
 
-function hideForm() {
+function hideRecordForm() {
     document.getElementById('recordForm').style.display = 'none';
 }
 
-// Function to save a new or edited record
 function saveRecord(event) {
     event.preventDefault();
     const recordNumber = document.getElementById('recordNumber').value;
@@ -123,10 +120,9 @@ function saveRecord(event) {
 
     localStorage.setItem('records', JSON.stringify(records));
     loadRecords();
-    hideForm();
+    hideRecordForm();
 }
 
-// Function to edit an existing record
 function editRecord(button) {
     const row = button.parentNode.parentNode;
     const index = row.rowIndex - 1;
@@ -140,10 +136,9 @@ function editRecord(button) {
     document.getElementById('doctor').value = records[index].doctor;
     document.getElementById('date').value = records[index].date;
     document.getElementById('formTitle').innerText = 'Edit Rekam Medis';
-    showForm();
+    showRecordForm();
 }
 
-// Function to delete an existing record
 function deleteRecord(button) {
     const row = button.parentNode.parentNode;
     const index = row.rowIndex - 1;
@@ -154,7 +149,6 @@ function deleteRecord(button) {
     loadRecords();
 }
 
-// Function to load records from localStorage and display them in the table
 function loadRecords() {
     const records = JSON.parse(localStorage.getItem('records')) || [];
     const recordBody = document.getElementById('recordBody');
@@ -177,6 +171,118 @@ function loadRecords() {
     });
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+    // Function to load registrations from localStorage and display them in the table
+    function loadRegistrations() {
+        const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+        const tbody = document.getElementById('riwayat-table').getElementsByTagName('tbody')[0];
+        tbody.innerHTML = '';
+
+        registrations.forEach((registration) => {
+            const row = tbody.insertRow();
+            row.innerHTML = `
+                <td>${registration.noRm}</td>
+                <td>${registration.name}</td>
+                <td>${registration.dob}</td>
+                <td>${registration.address}</td>
+                <td>${registration.phone}</td>
+            `;
+        });
+    }
+
+    // Load registrations
+    loadRegistrations();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     loadRecords();
 });
+
+// Riwayatadm
+document.addEventListener('DOMContentLoaded', () => {
+    loadRegistrations();
+});
+
+function showRegistrationForm() {
+    document.getElementById('registrationForm').style.display = 'block';
+    document.getElementById('formTitle').innerText = 'Tambah Pendaftaran';
+    document.getElementById('noRm').value = '';
+    document.getElementById('name').value = '';
+    document.getElementById('dob').value = '';
+    document.getElementById('address').value = '';
+    document.getElementById('phone').value = '';
+    document.getElementById('editIndex').value = '';
+}
+
+function hideRegistrationForm() {
+    document.getElementById('registrationForm').style.display = 'none';
+}
+
+function saveRegistration(event) {
+    event.preventDefault();
+    const noRm = document.getElementById('noRm').value;
+    const name = document.getElementById('name').value;
+    const dob = document.getElementById('dob').value;
+    const address = document.getElementById('address').value;
+    const phone = document.getElementById('phone').value;
+    const editIndex = document.getElementById('editIndex').value;
+
+    let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+
+    if (editIndex === '') {
+        const newRegistration = { noRm, name, dob, address, phone };
+        registrations.push(newRegistration);
+    } else {
+        registrations[editIndex] = { noRm, name, dob, address, phone };
+    }
+
+    localStorage.setItem('registrations', JSON.stringify(registrations));
+    loadRegistrations();
+    hideRegistrationForm();
+}
+
+function editRegistration(button) {
+    const row = button.parentNode.parentNode;
+    const index = row.rowIndex - 1;
+    const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+
+    document.getElementById('editIndex').value = index;
+    document.getElementById('noRm').value = registrations[index].noRm;
+    document.getElementById('name').value = registrations[index].name;
+    document.getElementById('dob').value = registrations[index].dob;
+    document.getElementById('address').value = registrations[index].address;
+    document.getElementById('phone').value = registrations[index].phone;
+    document.getElementById('formTitle').innerText = 'Edit Pendaftaran';
+    showRegistrationForm();
+}
+
+function deleteRegistration(button) {
+    const row = button.parentNode.parentNode;
+    const index = row.rowIndex - 1;
+    let registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+
+    registrations.splice(index, 1);
+    localStorage.setItem('registrations', JSON.stringify(registrations));
+    loadRegistrations();
+}
+
+function loadRegistrations() {
+    const registrations = JSON.parse(localStorage.getItem('registrations')) || [];
+    const tbody = document.getElementById('riwayat-table').getElementsByTagName('tbody')[0];
+    tbody.innerHTML = '';
+
+    registrations.forEach((registration, index) => {
+        const row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${registration.noRm}</td>
+            <td>${registration.name}</td>
+            <td>${registration.dob}</td>
+            <td>${registration.address}</td>
+            <td>${registration.phone}</td>
+            <td>
+                <button onclick="editRegistration(this)">Edit</button>
+                <button onclick="deleteRegistration(this)">Hapus</button>
+            </td>
+        `;
+    });
+}
