@@ -286,3 +286,9 @@ function loadRegistrations() {
         `;
     });
 }
+function logout() {
+    const confirmLogout = confirm("Apakah Anda ingin keluar?");
+    if (confirmLogout) {
+        window.location.href = "login.html";
+    }
+}
